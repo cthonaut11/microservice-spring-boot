@@ -37,6 +37,7 @@ public class VacationPayService {
         double averageDailyEarnings = calculateAverageDailyEarnings(averageSalary);
         int vacationDays = countDays(startDate, endDate);
         double result = vacationDays * averageDailyEarnings;
+
         return Math.round(result * 100) / 100.0;
     }
 
