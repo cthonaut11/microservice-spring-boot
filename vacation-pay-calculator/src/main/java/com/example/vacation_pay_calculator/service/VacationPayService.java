@@ -21,7 +21,8 @@ public class VacationPayService {
         }
 
         double averageDailyEarnings = calculateAverageDailyEarnings(averageSalary);
-        return vacationDays * averageDailyEarnings;
+        double result = vacationDays * averageDailyEarnings;
+        return Math.round(result * 100) / 100.0;
     }
 
     public double calculateExactVacationPay(double averageSalary, LocalDate startDate, LocalDate endDate){
@@ -35,7 +36,8 @@ public class VacationPayService {
 
         double averageDailyEarnings = calculateAverageDailyEarnings(averageSalary);
         int vacationDays = countDays(startDate, endDate);
-        return vacationDays * averageDailyEarnings;
+        double result = vacationDays * averageDailyEarnings;
+        return Math.round(result * 100) / 100.0;
     }
 
     private int countDays(LocalDate startDate, LocalDate endDate){
@@ -73,8 +75,6 @@ public class VacationPayService {
     }
 
     private boolean isHoliday(LocalDate date) {
-        return getHolidays(date.getYear()).contains(date) ||
-               (date.getYear() != date.plusYears(1).getYear() &&
-                getHolidays(date.getYear() + 1).contains(date));
+        return getHolidays(date.getYear()).contains(date);
     }
 }
